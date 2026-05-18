@@ -135,7 +135,8 @@ export class PitchEngine {
     this.rafId = requestAnimationFrame(this.loop);
     if (!this.analyser || !this.buf || !this.detect) return;
 
-    this.analyser.getFloatTimeDomainData(this.buf);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.analyser.getFloatTimeDomainData(this.buf as any);
     // copy into a standalone buffer (some YIN impls dislike subarray views)
     this.analysisBuf.set(this.buf.subarray(0, ANALYSIS_WINDOW));
     const window = this.analysisBuf;
